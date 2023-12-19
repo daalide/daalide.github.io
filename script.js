@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function playRandomAudio() {
         if (currentIndex < audioFiles.length) {
             const randomAudio = audioFiles[currentIndex];
-            const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
+            const audio = new Audio('./' + randomAudio); // Adjust the path accordingly
             audio.preload = 'auto';
 
             // Introduce a 500ms (0.5 seconds) delay before playing the audio
@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
+    // Rest of your code remains unchanged
+});
+
 
     function createSelectionButtons() {
         const buttonsContainer = document.createElement('div');
