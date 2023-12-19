@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#content-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#panda {
+    width: 300px;
+    height: 150px;
+    background-image: url('/Users/iFruit/Desktop/web/panda-image.jpg');
+    background-size: cover;
+    margin-right: 20px;
+}
+
+#mountain {
+    width: 300px;
+    height: 500px;
+    background-image: url('/Users/iFruit/Desktop/web/mountain-image.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+#monkey {
+    width: 100px;
+    height: 100px;
+    background-image: url('/Users/iFruit/Desktop/web/monkey-image.jpg');
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.selection-button {
+    padding: 10px 20px;
+    font-size: 32px;
+}
+
+/* Add this to your existing CSS */
+.correct {
+    background-color: #9effa5;
+}
+
+.incorrect {
+    background-color: #ff9b9b;
+}
