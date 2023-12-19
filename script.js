@@ -1,17 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Add head title
+    document.title = "Help Monkey Game";
+
     const audioFiles = ['ju2.mp3', 'ju3.mp3', 'ba1.mp3', 'ba4.mp3'];
     const panda = document.getElementById('panda');
     const monkey = document.getElementById('monkey');
     const startWindow = document.getElementById('start-window');
     const mainPage = document.getElementById('main-page');
     const startButton = document.getElementById('start-button');
-    
+
     let currentIndex = 0;
+    let responses = [];
 
     function playRandomAudio() {
         if (currentIndex < audioFiles.length) {
             const randomAudio = audioFiles[currentIndex];
-            const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
+            const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio); // const audio = new Audio('./' + randomAudio);
+            audio.preload = 'auto';
 
             // Introduce a 500ms (0.5 seconds) delay before playing the audio
             setTimeout(function () {
@@ -34,9 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 3000);
 
                     // Set up an event listener for button click
-                    document.addEventListener('click', function buttonClickHandler() {
+                    document.addEventListener('click', function buttonClickHandler(event) {
                         clearTimeout(removeButtonsTimeout);
                         mainPage.removeChild(selectionButtons);
+                        const userAnswer = event.target.textContent.toLowerCase();
+                        responses.push({ audio: randomAudio, response: userAnswer });
                         currentIndex++;
 
                         // Play the next audio
@@ -50,50 +57,64 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             // All audios have been played
             console.log('All audios played.');
+
+            // Add the "Submit" button
+            const submitButton = createButton('Submit');
+            mainPage.appendChild(submitButton);
+
+            // Set up an event listener for button click
+            submitButton.addEventListener('click', function submitButtonClickHandler() {
+                // Call the function to submit responses to Google Sheet
+                simulateFormSubmit(responses);
+                
+                // You can add additional logic or UI updates after submitting
+                console.log('Responses submitted.');
+            });
         }
     }
 
+    // Rest of your code remains unchanged
+
     function createSelectionButtons() {
-        // Create a container div for the buttons
         const buttonsContainer = document.createElement('div');
         buttonsContainer.classList.add('buttons-container');
 
-        // Create "Same" button
-        const buttonSame = document.createElement('button');
-        buttonSame.textContent = 'Same';
-        buttonSame.classList.add('selection-button');
-        buttonSame.addEventListener('click', function () {
-            // Handle the "Same" button click
-            console.log('Same button clicked.');
-            // Your code to check the answer and update the feedback
-            // Example: checkAnswer('same');
-        });
+        const buttonSame = createButton('Same');
+        const buttonDifferent = createButton('Different');
 
-        // Create "Different" button
-        const buttonDifferent = document.createElement('button');
-        buttonDifferent.textContent = 'Different';
-        buttonDifferent.classList.add('selection-button');
-        buttonDifferent.addEventListener('click', function () {
-            // Handle the "Different" button click
-            console.log('Different button clicked.');
-            // Your code to check the answer and update the feedback
-            // Example: checkAnswer('different');
-        });
-
-        // Append buttons to the container
         buttonsContainer.appendChild(buttonSame);
         buttonsContainer.appendChild(buttonDifferent);
 
         return buttonsContainer;
     }
 
-    function checkAnswer(userAnswer) {
-        // Your code to check the answer and update the feedback
-        // Example: if (userAnswer === correctAnswer) { /* Correct logic */ } else { /* Incorrect logic */ }
+    function createButton(text) {
+        const button = document.createElement('button');
+        button.textContent = text;
+        button.classList.add('selection-button');
+        return button;
+    }
+
+    function simulateFormSubmit(data) {
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxJIVS3TUlJMtfjgoLqephIhr3AT0DEwMIaQSDZf7nMaJYi4yLyDUXTJD81lmIAedQe/exec'; // Replace with your Google Apps Script web app URL
+
+        fetch(scriptUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ responses: data }),
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Data submitted to Google Sheet:', result);
+        })
+        .catch((error) => {
+            console.error('Error submitting data to Google Sheet:', error);
+        });
     }
 
     startButton.addEventListener('click', function () {
-        // Hide the start window and show the main page
         startWindow.style.display = 'none';
         mainPage.style.display = 'block';
 
@@ -101,6 +122,4 @@ document.addEventListener('DOMContentLoaded', function () {
         // For example, you might want to play an initial audio when the main page starts
         playRandomAudio();
     });
-
-    // Add event listeners for the "Same" and "Different" buttons, and call checkAnswer accordingly
 });
