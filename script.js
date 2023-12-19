@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Add head title
+    document.title = "Help Monkey Game";
+
     const audioFiles = ['ju2.mp3', 'ju3.mp3', 'ba1.mp3', 'ba4.mp3'];
     const panda = document.getElementById('panda');
     const monkey = document.getElementById('monkey');
