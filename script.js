@@ -124,4 +124,3 @@ document.addEventListener('DOMContentLoaded', function () {
         // For example, you might want to play an initial audio when the main page starts
         playRandomAudio();
     });
-});
