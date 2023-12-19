@@ -9,23 +9,23 @@ body {
 
 #content-container {
     display: flex;
-    justify-content: space-between; /* Align items with space between them */
-    width: 80%; /* Adjust as needed */
-    margin: 0 auto; /* Center the content container */
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
 }
 
 #panda {
     width: 300px;
     height: 150px;
-    background-image: url('/Users/iFruit/Desktop/web/panda-image.jpg'); /* Replace with your panda image */
+    background-image: url('./panda-image.jpg'); /* /Users/iFruit/Desktop/web ;background-image: .; */
     background-size: cover;
-    margin-right: 20px; /* Add margin to separate the panda image from the mountain */
+    margin-right: 20px;
 }
 
 #mountain {
     width: 300px;
     height: 500px;
-    background-image: url('/Users/iFruit/Desktop/web/mountain-image.jpg'); /* Replace with your mountain image */
+    background-image: url('./mountain-image.jpg'); /* Adjust the path accordingly */
     background-size: cover;
     position: relative;
 }
@@ -33,19 +33,31 @@ body {
 #monkey {
     width: 100px;
     height: 100px;
-    background-image: url('/Users/iFruit/Desktop/web/monkey-image.jpg'); /* Replace with your monkey image */
+    background-image: url('./monkey-image.jpg'); /* Adjust the path accordingly */
     background-size: cover;
     position: absolute;
     bottom: 0;
 }
 
+/* Rest of your CSS remains unchanged */
+
+
 .buttons-container {
     display: flex;
-    flex-direction: column; /* Arrange buttons vertically */
+    flex-direction: column;
     gap: 10px;
 }
 
 .selection-button {
     padding: 10px 20px;
     font-size: 32px;
+}
+
+/* Add this to your existing CSS */
+.correct {
+    background-color: #9effa5;
+}
+
+.incorrect {
+    background-color: #ff9b9b;
 }
