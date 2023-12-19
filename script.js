@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
     function playRandomAudio() {
         if (currentIndex < audioFiles.length) {
-            const randomAudio = 'https://daalide.github.io/repo/' + audioFiles[currentIndex];
-		  const audio = new Audio(randomAudio);
+		   const randomAudio = 'https://daalide.github.io/daalide.github.io/' + audioFiles[currentIndex];
+		   const audio = new Audio(randomAudio);
+
              // const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
             audio.preload = 'auto';
 
