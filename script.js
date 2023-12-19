@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Add head title
     document.title = "Help Monkey Game";
-
     const audioFiles = ['ju2.mp3', 'ju3.mp3', 'ba1.mp3', 'ba4.mp3'];
     const panda = document.getElementById('panda');
     const monkey = document.getElementById('monkey');
@@ -21,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function playRandomAudio() {
         if (currentIndex < audioFiles.length) {
             const randomAudio = audioFiles[currentIndex];
-            const audio = new Audio(randomAudio); // const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
+		  const audio = new Audio('https://daalide.github.io/${randomAudio}');
+             // const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
             audio.preload = 'auto';
 
             // Introduce a 500ms (0.5 seconds) delay before playing the audio
