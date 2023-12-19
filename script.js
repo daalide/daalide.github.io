@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function playRandomAudio() {
         if (currentIndex < audioFiles.length) {
             const randomAudio = audioFiles[currentIndex];
-            const audio = new Audio('./' + randomAudio); // const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
+            const audio = new Audio('/daalide.github.io/' + randomAudio); // const audio = new Audio('/Users/iFruit/Desktop/web/' + randomAudio);
             audio.preload = 'auto';
 
             // Introduce a 500ms (0.5 seconds) delay before playing the audio
