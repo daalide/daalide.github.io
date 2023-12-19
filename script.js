@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentIndex = 0;
     let responses = [];
 
+    // Add the text "Please help monkey"
+    const helpText = document.createElement('div');
+    helpText.textContent = 'Please help monkey';
+    helpText.classList.add('help-text'); // You can style this class in your CSS
+    mainPage.appendChild(helpText);
+    
     function playRandomAudio() {
         if (currentIndex < audioFiles.length) {
             const randomAudio = audioFiles[currentIndex];
